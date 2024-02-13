@@ -26,11 +26,11 @@
             
             // Create FormData object to send file and output format
             var formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-            formData.append('outputFormat', outputFormat);
+            formData.append('input', fileInput.files[0]);
+            formData.append('outputformat', outputFormat);
 
             // Send POST request to conversion endpoint
-            fetch('https://api.cloudconvert.com', {
+            fetch('https://api.cloudconvert.com/convert', {
                 method: 'POST',
                 body: formData
             })
