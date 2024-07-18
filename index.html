@@ -4,9 +4,9 @@
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status ==200) {
-            alert(xhttp.responseText):
+            alert(xhttp.responseText);
         }
-    }:
+    };
     xhttp.open("POST" , "https://w3b-api.ultramobile.com/v1/mint/account/password/reset-code", true);
     xhttp.withCredentials= true;
     xhttp.send();
