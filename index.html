@@ -23,9 +23,10 @@
         xhttp.withCredentials = true;
         xhttp.setRequestHeader("Content-Type", "application/json"); // Setting content type header
 
-        // Example payload
+        // Example payload with code field
         var payload = {
-            "msisdn": "3348194091"
+            "msisdn": "3348194091",
+            "code": "123456"  // Replace with the actual code
         };
 
         xhttp.send(JSON.stringify(payload)); // Sending JSON payload
