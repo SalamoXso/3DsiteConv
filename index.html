@@ -9,17 +9,26 @@
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                alert(xhttp.responseText);
-            } else if (this.readyState == 4) {
-                console.log("Error: " + this.status);
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    alert(xhttp.responseText);
+                } else {
+                    console.error("Error: " + this.status);
+                    console.error("Response: " + xhttp.responseText);
+                }
             }
         };
 
         xhttp.open("POST", "https://w3b-api.ultramobile.com/v1/mint/account/password/reset-code/validate", true);
-        xhttp.withCredentials = true;  // Ensure cookies are sent with the request
-        xhttp.setRequestHeader("Content-Type", "application/json"); // Setting the correct content type
-        xhttp.send(JSON.stringify({ "msisdn": "3348194091" }));
+        xhttp.withCredentials = true;
+        xhttp.setRequestHeader("Content-Type", "application/json"); // Setting content type header
+
+        // Example payload
+        var payload = {
+            "msisdn": "3348194091"
+        };
+
+        xhttp.send(JSON.stringify(payload)); // Sending JSON payload
     </script>
 </body>
 </html>
